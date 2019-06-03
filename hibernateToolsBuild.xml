@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+
+<project name="Webapp Precompilation" default="crlf" basedir=".">
+	<property environment="env"/>
+	
+	<property name="lib.dir" value="mylibs"/>
+
+	<path id="classpath">
+	    <fileset dir="${lib.dir}" includes="**/*.jar"/>
+	</path>
+	
+	 <taskdef name="hbm2java"
+	                classname="net.sf.hibernate.tool.hbm2java.Hbm2JavaTask" classpathref="classpath">
+	 	</taskdef>
+	  
+	<taskdef name="hibernatetool" 
+	         classname="org.hibernate.tool.ant.HibernateToolTask"  classpathref="classpath">
+			 	</taskdef>
+	
+	
+	<target name="codegen"
+	               description="Generate Java source code
+	                            from the Hibernate mapping files">
+		<echo message="Base Directory is ${env.basedir}"></echo>
+		<echo message="revenge Directory is ${env.revengefilepath}"></echo>
+		
+		<hibernatetool destdir="${env.basedir}/src">
+			
+			<jdbcconfiguration configurationfile="${env.hibernatecfgdir}"  revengfile="${env.revengefilepath}/hibernate.reveng.xml" packagename="lnt.domainObjects"  />
+			
+			<hbm2hbmxml/>
+			
+			<hbm2java jdk5="true"/>
+			
+			<hbm2cfgxml/>
+			
+			
+			</hibernatetool>
+		
+	       </target>
+	
+	<target name="crlf" depends="codegen">
+		<echo>Spaces converted into tabs
+					</echo>
+	<fixcrlf srcdir="${env.basedir}/src/lnt/domainObjects" includes="**/*.*" eol="lf" eof="remove" tab="add" tablength="4" />
+	</target>
+
+</project>
+

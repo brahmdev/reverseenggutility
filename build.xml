@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+
+<project name="Webapp Precompilation" default="crlf" basedir=".">
+	<property environment="env"/>
+
+	<property name="lib.dir" value="mylibs"/>
+
+		<path id="project.class.path">
+		    <fileset dir="${lib.dir}" includes="**/*.jar"/>
+		</path>
+		
+
+	<taskdef name="hbm2java"
+	                classname="net.sf.hibernate.tool.hbm2java.Hbm2JavaTask"
+	                classpathref="project.class.path"/>
+
+	<taskdef name="hibernatetool" 
+	         classname="org.hibernate.tool.ant.HibernateToolTask" 
+		                classpathref="project.class.path"/>
+
+
+	<target name="codegen"
+	               description="Generate Java source code
+	                            from the Hibernate mapping files">
+
+
+
+		<hibernatetool destdir="./db-model">
+
+
+			<jdbcconfiguration configurationfile="./hibernate.cfg.xml"  revengfile="./hibernate.reveng.xml" packagename="com.dev.ams.model"  />
+
+			<hbm2java jdk5="true" ejb3="true"/>
+
+			<hbm2cfgxml/>
+
+		</hibernatetool>
+
+	</target>
+
+
+
+	<target name="crlf" depends="codegen">
+		<echo>Spaces converted into tabs
+						</echo>
+		<fixcrlf srcdir="db-model/com/dev/ams/model" includes="**/*.*" eol="lf" eof="remove" tab="add" tablength="4" />
+	</target>
+
+</project>
+

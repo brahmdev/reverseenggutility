@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">root123</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost/ams</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.default_catalog">ams</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <mapping resource="com/dev/ams/model/Board.hbm.xml" />
+        <mapping resource="com/dev/ams/model/Authorities.hbm.xml" />
+        <mapping resource="com/dev/ams/model/Feedback.hbm.xml" />
+        <mapping resource="com/dev/ams/model/Standard.hbm.xml" />
+        <mapping resource="com/dev/ams/model/Chapter.hbm.xml" />
+        <mapping resource="com/dev/ams/model/LectureSchedule.hbm.xml" />
+        <mapping resource="com/dev/ams/model/QuestionPapers.hbm.xml" />
+        <mapping resource="com/dev/ams/model/StudentAttendance.hbm.xml" />
+        <mapping resource="com/dev/ams/model/Subject.hbm.xml" />
+        <mapping resource="com/dev/ams/model/Exam.hbm.xml" />
+        <mapping resource="com/dev/ams/model/Users.hbm.xml" />
+        <mapping resource="com/dev/ams/model/LectureScheduleStatus.hbm.xml" />
+        <mapping resource="com/dev/ams/model/StudentDetails.hbm.xml" />
+        <mapping resource="com/dev/ams/model/Batch.hbm.xml" />
+        <mapping resource="com/dev/ams/model/ExamResult.hbm.xml" />
+        <mapping resource="com/dev/ams/model/Databasechangeloglock.hbm.xml" />
+        <mapping resource="com/dev/ams/model/ChapterDetails.hbm.xml" />
+        <mapping resource="com/dev/ams/model/Databasechangelog.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>
